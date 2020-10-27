@@ -17,12 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin_home', [App\Http\Controllers\HomeController::class, 'admin_index'])->middleware('role:1')->name('admin_home');
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('role:2')->name('home');
 Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
+// Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('table-list', function () {
@@ -51,7 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('upgrade', function () {
 		return view('pages.upgrade');
-	})->name('upgrade');
+    })->name('upgrade');
+
 });
 
 Route::group(['middleware' => 'auth'], function () {
