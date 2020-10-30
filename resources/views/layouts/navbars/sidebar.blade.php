@@ -6,7 +6,7 @@
   -->
   <div class="logo">
     <a href="https://creative-tim.com/" class="simple-text logo-normal">
-      {{ __('Creative Tim') }}
+      {{ __('Aplikasi Pelaporan') }}
     </a>
   </div>
   <div class="sidebar-wrapper">
@@ -17,31 +17,167 @@
             <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
-          <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
-          <p>{{ __('Laravel Examples') }}
+      <li class="nav-item {{ ($activePage == 'baranghilang' || $activePage == 'barangrusak' || $activePage == 'barangtemuan') ? ' active' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#databarang" aria-expanded="false">
+        <i class="material-icons">list_alt</i>
+          <p>{{ __('Data Barang') }}
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse show" id="laravelExample">
+        <div class="collapse" id="databarang">
           <ul class="nav">
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'baranghilang' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('profile.edit') }}">
-                <span class="sidebar-mini"> UP </span>
-                <span class="sidebar-normal">{{ __('User profile') }} </span>
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
               </a>
             </li>
-            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
+            @if(Auth::user()->account_type_id == 1)
+            <li class="nav-item{{ $activePage == 'barangrusak' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Barang Rusak') }} </span>
+              </a>
+            </li>
+            @endif
+            <li class="nav-item{{ $activePage == 'barangtemuan' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('user.index') }}">
-                <span class="sidebar-mini"> UM </span>
-                <span class="sidebar-normal"> {{ __('User Management') }} </span>
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal"> {{ __('Barang Temuan') }} </span>
               </a>
             </li>
           </ul>
         </div>
       </li>
-      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
+      <li class="nav-item {{ ($activePage == 'p_baranghilang' || $activePage == 'p_barangrusak' || $activePage == 'p_barangtemuan') ? ' active' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#pengajuan" aria-expanded="false">
+        <i class="material-icons">content_paste</i>
+          <p>{{ __('Pengajuan') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="pengajuan">
+          <ul class="nav">
+            <li class="nav-item{{ $activePage == 'p_baranghilang' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'p_barangrusak' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Barang Rusak') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'p_barangtemuan' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('user.index') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal"> {{ __('Barang Temuan') }} </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      @if(Auth::user()->account_type_id == 1)
+      <li class="nav-item {{ ($activePage == 'bp_baranghilang' || $activePage == 'bp_barangrusak' || $activePage == 'bp_barangtemuan') ? ' active' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#buatpengajuan" aria-expanded="false">
+        <i class="material-icons">content_paste</i>
+          <p>{{ __('Buat Pengajuan') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="buatpengajuan">
+          <ul class="nav">
+            <li class="nav-item{{ $activePage == 'bp_baranghilang' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'bp_barangrusak' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Barang Rusak') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'bp_barangtemuan' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('user.index') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal"> {{ __('Barang Temuan') }} </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item{{ $activePage == 'p_saatini' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('home') }}">
+          <i class="material-icons">fact_check</i>
+            <p>{{ __('Pengajuan saat ini') }}</p>
+        </a>
+      </li>
+      @endif
+      <li class="nav-item {{ ($activePage == 'r_baranghilang' || $activePage == 'r_barangrusak' || $activePage == 'r_barangtemuan') ? ' active' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false">
+        <i class="material-icons">library_books</i>
+          <p>{{ __('Report') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="report">
+          <ul class="nav">
+            <li class="nav-item{{ $activePage == 'r_baranghilang' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'r_barangrusak' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Barang Rusak') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'r_barangtemuan' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('user.index') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal"> {{ __('Barang Temuan') }} </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item {{ ($activePage == 'kategoribarang' || $activePage == 'divisi' || $activePage == 'lokasi') ? ' active' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#masterdata" aria-expanded="false">
+        <i class="material-icons">perm_data_setting</i>
+          <p>{{ __('Master Data') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="masterdata">
+          <ul class="nav">
+            <li class="nav-item{{ $activePage == 'kategoribarang' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Kategori Barang') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'divisi' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Divisi') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'lokasi' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('user.index') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal"> {{ __('Lokasi') }} </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <!-- <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">content_paste</i>
             <p>{{ __('Table List') }}</p>
@@ -82,7 +218,7 @@
           <i class="material-icons text-white">unarchive</i>
           <p>{{ __('Upgrade to PRO') }}</p>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </div>
