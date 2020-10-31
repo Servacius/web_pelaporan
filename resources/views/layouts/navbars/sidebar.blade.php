@@ -12,9 +12,13 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+      @if(Auth::user()->account_type_id == 1)
+        <a class="nav-link" href="{{ route('admin_home') }}">
+      @else
         <a class="nav-link" href="{{ route('home') }}">
+      @endif
           <i class="material-icons">dashboard</i>
-            <p>{{ __('Dashboard') }}</p>
+            <p>{{ __('Beranda') }}</p>
         </a>
       </li>
       <li class="nav-item {{ ($activePage == 'baranghilang' || $activePage == 'barangrusak' || $activePage == 'barangtemuan') ? ' active' : '' }}">
@@ -49,6 +53,7 @@
           </ul>
         </div>
       </li>
+      @if(Auth::user()->account_type_id == 1)
       <li class="nav-item {{ ($activePage == 'p_baranghilang' || $activePage == 'p_barangrusak' || $activePage == 'p_barangtemuan') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#pengajuan" aria-expanded="false">
         <i class="material-icons">content_paste</i>
@@ -79,7 +84,8 @@
           </ul>
         </div>
       </li>
-      @if(Auth::user()->account_type_id == 1)
+      @endif
+      @if(Auth::user()->account_type_id == 2)
       <li class="nav-item {{ ($activePage == 'bp_baranghilang' || $activePage == 'bp_barangrusak' || $activePage == 'bp_barangtemuan') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#buatpengajuan" aria-expanded="false">
         <i class="material-icons">content_paste</i>
@@ -116,7 +122,38 @@
             <p>{{ __('Pengajuan saat ini') }}</p>
         </a>
       </li>
+      <li class="nav-item {{ ($activePage == 'h_baranghilang' || $activePage == 'h_barangrusak' || $activePage == 'h_barangtemuan') ? ' active' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#histori" aria-expanded="false">
+        <i class="material-icons">library_books</i>
+          <p>{{ __('Histori') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="histori">
+          <ul class="nav">
+            <li class="nav-item{{ $activePage == 'h_baranghilang' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'h_barangrusak' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('profile.edit') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal">{{ __('Barang Rusak') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'h_barangtemuan' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('user.index') }}">
+                <span class="sidebar-mini col-sm-1"></span>
+                <span class="sidebar-normal"> {{ __('Barang Temuan') }} </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
       @endif
+      @if(Auth::user()->account_type_id == 1)
       <li class="nav-item {{ ($activePage == 'r_baranghilang' || $activePage == 'r_barangrusak' || $activePage == 'r_barangtemuan') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false">
         <i class="material-icons">library_books</i>
@@ -177,48 +214,7 @@
           </ul>
         </div>
       </li>
-      <!-- <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('table') }}">
-          <i class="material-icons">content_paste</i>
-            <p>{{ __('Table List') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('typography') }}">
-          <i class="material-icons">library_books</i>
-            <p>{{ __('Typography') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('icons') }}">
-          <i class="material-icons">bubble_chart</i>
-          <p>{{ __('Icons') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('map') }}">
-          <i class="material-icons">location_ons</i>
-            <p>{{ __('Maps') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('notifications') }}">
-          <i class="material-icons">notifications</i>
-          <p>{{ __('Notifications') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'language' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('language') }}">
-          <i class="material-icons">language</i>
-          <p>{{ __('RTL Support') }}</p>
-        </a>
-      </li>
-      <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
-        <a class="nav-link text-white bg-danger" href="{{ route('upgrade') }}">
-          <i class="material-icons text-white">unarchive</i>
-          <p>{{ __('Upgrade to PRO') }}</p>
-        </a>
-      </li> -->
+      @endif
     </ul>
   </div>
 </div>
