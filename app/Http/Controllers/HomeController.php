@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\PelaporanController;
+
 class HomeController extends Controller
 {
     /**
@@ -9,9 +11,13 @@ class HomeController extends Controller
      *
      * @return void
      */
+
+    private $pelaporan;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->pelaporan = new PelaporanController();
     }
 
     /**
@@ -21,12 +27,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $barangHilang = $this->pelaporan->getPelaporanByTypeId(1, "home");
+        $barangTemuan = $this->pelaporan->getPelaporanByTypeId(3, "home");
+
+        return view('dashboard', compact('barangHilang', 'barangTemuan'));
     }
 
     // admin application dashboard
     public function admin_index()
     {
-        return view('admin_dashboard');
+        $barangHilang = $this->pelaporan->getPelaporanByTypeId(1, "home");
+        $barangRusak = $this->pelaporan->getPelaporanByTypeId(2, "home");
+        $barangTemuan = $this->pelaporan->getPelaporanByTypeId(3, "home");
+        // dd($barangTemuan);
+        return view('admin_dashboard', compact('barangRusak', 'barangHilang', 'barangTemuan'));
     }
 }

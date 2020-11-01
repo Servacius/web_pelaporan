@@ -18,10 +18,12 @@ Route::get('/', function () {
 });
 
 Route::get('/admin_home', [App\Http\Controllers\HomeController::class, 'admin_index'])->middleware('role:1')->name('admin_home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('role:2')->name('home');
+Route::get('/data-barang-hilang', [App\Http\Controllers\PelaporanController::class, 'indexBarangHilang'])->name('data-barang-hilang');
+Route::get('/data-barang-rusak', [App\Http\Controllers\PelaporanController::class, 'indexBarangRusak'])->name('data-barang-rusak');
+Route::get('/data-barang-temuan', [App\Http\Controllers\PelaporanController::class, 'indexBarangTemuan'])->name('data-barang-temuan');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('role:2')->name('home');
 Auth::routes();
 
 // Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');

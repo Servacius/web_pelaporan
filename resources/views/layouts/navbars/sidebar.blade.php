@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
+<div class="sidebar" data-color="danger" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
   <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -31,21 +31,21 @@
         <div class="collapse" id="databarang">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'baranghilang' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('data-barang-hilang') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
               </a>
             </li>
             @if(Auth::user()->account_type_id == 1)
             <li class="nav-item{{ $activePage == 'barangrusak' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('data-barang-rusak') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Barang Rusak') }} </span>
               </a>
             </li>
             @endif
             <li class="nav-item{{ $activePage == 'barangtemuan' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
+              <a class="nav-link" href="{{ route('data-barang-temuan') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal"> {{ __('Barang Temuan') }} </span>
               </a>

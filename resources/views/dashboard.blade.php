@@ -47,72 +47,20 @@
             <div class="card-body table-responsive">
               <table class="table table-hover">
                 <thead class="text-warning">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Salary</th>
-                  <th>Country</th>
+                    <th>ID</th>
+                    <th>Slack ID</th>
+                    <th>Nama Barang</th>
+                    <th>Deskripsi</th>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Dakota Rice</td>
-                    <td>$36,738</td>
-                    <td>Niger</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Minerva Hooper</td>
-                    <td>$23,789</td>
-                    <td>Curaçao</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Sage Rodriguez</td>
-                    <td>$56,142</td>
-                    <td>Netherlands</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>7</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>8</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>9</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>10</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
+                    @foreach($barangHilang as $barangHilang)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$barangHilang->slack_id}}</td>
+                        <td>{{$barangHilang->name}}</td>
+                        <td>{{$barangHilang->deskripsi}}</td>
+                    </tr>
+                    @endforeach
                 </tbody>
               </table>
                 <div>
@@ -129,73 +77,21 @@
             </div>
             <div class="card-body table-responsive">
               <table class="table table-hover">
-                <thead class="text-warning">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Salary</th>
-                  <th>Country</th>
+                <thead class="text-success">
+                    <th>ID</th>
+                    <th>Slack ID</th>
+                    <th>Nama Barang</th>
+                    <th>Deskripsi</th>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Dakota Rice</td>
-                    <td>$36,738</td>
-                    <td>Niger</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Minerva Hooper</td>
-                    <td>$23,789</td>
-                    <td>Curaçao</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Sage Rodriguez</td>
-                    <td>$56,142</td>
-                    <td>Netherlands</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>7</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>8</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>9</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                  <tr>
-                    <td>10</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
+                    @foreach($barangTemuan as $barangtemuan)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$barangtemuan->slack_id}}</td>
+                        <td>{{$barangtemuan->name}}</td>
+                        <td>{{$barangtemuan->deskripsi}}</td>
+                    </tr>
+                    @endforeach
                 </tbody>
               </table>
                 <div>

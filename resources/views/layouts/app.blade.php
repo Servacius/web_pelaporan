@@ -27,8 +27,8 @@
         @guest()
             @include('layouts.page_templates.guest')
         @endguest
-        @if (auth()->check())
-        <div class="fixed-plugin">
+        <!-- @if (auth()->check()) -->
+        <!-- <div class="fixed-plugin">
           <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
               <i class="fa fa-cog fa-2x"> </i>
@@ -41,8 +41,8 @@
                     <span class="badge filter badge-purple " data-color="purple"></span>
                     <span class="badge filter badge-azure" data-color="azure"></span>
                     <span class="badge filter badge-green" data-color="green"></span>
-                    <span class="badge filter badge-warning active" data-color="orange"></span>
-                    <span class="badge filter badge-danger" data-color="danger"></span>
+                    <span class="badge filter badge-warning" data-color="orange"></span>
+                    <span class="badge filter badge-danger active" data-color="danger"></span>
                     <span class="badge filter badge-rose" data-color="rose"></span>
                   </div>
                   <div class="clearfix"></div>
@@ -71,14 +71,14 @@
               </li>
               <li class="button-container">
                 <a href="https://www.creative-tim.com/product/material-dashboard-laravel" target="_blank" class="btn btn-primary btn-block">Free Download</a>
-              </li>
+              </li> -->
               <!-- <li class="header-title">Want more components?</li>
                   <li class="button-container">
                       <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
                         Get the pro version
                       </a>
                   </li> -->
-              <li class="button-container">
+              <!-- <li class="button-container">
                 <a href="https://material-dashboard-laravel.creative-tim.com/docs/getting-started/laravel-setup.html" target="_blank" class="btn btn-default btn-block">
                   View Documentation
                 </a>
@@ -100,8 +100,8 @@
               </li>
             </ul>
           </div>
-        </div>
-        @endif
+        </div> -->
+        <!-- @endif -->
         <!--   Core JS Files   -->
         <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
