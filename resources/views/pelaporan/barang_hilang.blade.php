@@ -50,8 +50,12 @@
                     </td>
                   </tr>
                 @endforeach
+
                 </tbody>
               </table>
+            </div>
+            <div style="float: right;">
+                {{$p_barangHilang->links()}}
             </div>
           </div>
         </div>

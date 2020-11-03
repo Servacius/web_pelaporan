@@ -17,12 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin_home', [App\Http\Controllers\HomeController::class, 'admin_index'])->middleware('role:1')->name('admin_home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('role:2')->name('home');
-Route::get('/data-barang-hilang', [App\Http\Controllers\PelaporanController::class, 'indexBarangHilang'])->name('data-barang-hilang');
-Route::get('/data-barang-rusak', [App\Http\Controllers\PelaporanController::class, 'indexBarangRusak'])->name('data-barang-rusak');
-Route::get('/data-barang-temuan', [App\Http\Controllers\PelaporanController::class, 'indexBarangTemuan'])->name('data-barang-temuan');
-
 Auth::routes();
 Auth::routes();
 
@@ -63,6 +57,17 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+
+    Route::get('/admin_home', [App\Http\Controllers\HomeController::class, 'admin_index'])->middleware('role:1')->name('admin_home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('role:2')->name('home');
+
+    // Data pelaporan routes
+    Route::get('/data-barang-hilang', [App\Http\Controllers\PelaporanController::class, 'indexBarangHilang'])->name('data-barang-hilang');
+    Route::get('/data-barang-rusak', [App\Http\Controllers\PelaporanController::class, 'indexBarangRusak'])->name('data-barang-rusak');
+    Route::get('/data-barang-temuan', [App\Http\Controllers\PelaporanController::class, 'indexBarangTemuan'])->name('data-barang-temuan');
+
+    // Master data routes
+    Route::resource('kategori', 'App\Http\Controllers\KategoriController');
 });
 

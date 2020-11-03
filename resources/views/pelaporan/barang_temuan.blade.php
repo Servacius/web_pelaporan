@@ -53,6 +53,9 @@
                 </tbody>
               </table>
             </div>
+            <div style="float: right;">
+                {{$p_barangTemuan->links()}}
+            </div>
           </div>
         </div>
       </div>

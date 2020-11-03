@@ -53,7 +53,7 @@
           </ul>
         </div>
       </li>
-      @if(Auth::user()->account_type_id == 1)
+      <!-- @if(Auth::user()->account_type_id == 1)
       <li class="nav-item {{ ($activePage == 'p_baranghilang' || $activePage == 'p_barangrusak' || $activePage == 'p_barangtemuan') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#pengajuan" aria-expanded="false">
         <i class="material-icons">content_paste</i>
@@ -84,7 +84,7 @@
           </ul>
         </div>
       </li>
-      @endif
+      @endif -->
       @if(Auth::user()->account_type_id == 2)
       <li class="nav-item {{ ($activePage == 'bp_baranghilang' || $activePage == 'bp_barangrusak' || $activePage == 'bp_barangtemuan') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#buatpengajuan" aria-expanded="false">
@@ -194,7 +194,7 @@
         <div class="collapse" id="masterdata">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'kategoribarang' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('kategori.index') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Kategori Barang') }} </span>
               </a>

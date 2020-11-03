@@ -79,7 +79,7 @@
                 </tbody>
               </table>
                 <div>
-                    <a href="#" style="float: right;" class="text-warning font-weight-bold">Read more ....</a>
+                    <a href="{{ route('data-barang-hilang') }}" style="float: right;" class="text-warning font-weight-bold">Read more ....</a>
                 </div>
             </div>
           </div>
@@ -110,7 +110,7 @@
                 </tbody>
               </table>
                 <div>
-                    <a href="#" style="float: right;" class="text-danger font-weight-bold">Read more ....</a>
+                    <a href="{{ route('data-barang-rusak') }}" style="float: right;" class="text-danger font-weight-bold">Read more ....</a>
                 </div>
             </div>
           </div>
@@ -141,7 +141,7 @@
                 </tbody>
               </table>
                 <div>
-                    <a href="#" style="float: right;" class="text-success font-weight-bold">Read more ....</a>
+                    <a href="{{ route('data-barang-temuan') }}" style="float: right;" class="text-success font-weight-bold">Read more ....</a>
                 </div>
             </div>
           </div>

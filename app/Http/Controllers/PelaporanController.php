@@ -71,7 +71,7 @@ class PelaporanController extends Controller
         }else {
             $pelaporan = Pelaporan::where('kategory_id', $kategoryid)
                     ->orderBy('created_at', 'DESC')
-                    ->paginate(5);
+                    ->simplePaginate(5);
         }
 
         return $pelaporan;
@@ -79,11 +79,12 @@ class PelaporanController extends Controller
 
     public function getPelaporanByKategory(int $kategori){
         $pelaporan = DB::table('pelaporan')
-                    ->join('status_log', 'pelaporan.id', '=', 'status_log.pelaporan_id')
+                    ->join(DB::raw('(select status_log.pelaporan_id, max(status_log.status_id) as status_id from status_log group by status_log.pelaporan_id) as status_log'), 'pelaporan.id', '=', 'status_log.pelaporan_id')
                     ->join('status', 'status_log.status_id', '=', 'status.id')
-                    ->select('pelaporan.id as pelaporan_id', 'pelaporan.name as pelaporan_name', 'pelaporan.slack_id as slack_id', 'pelaporan.deskripsi as deskripsi', 'status.name as status_name', 'status.id as status_id', 'status_log.id as status_log_id')
+                    ->select('pelaporan.id as pelaporan_id', 'pelaporan.name as pelaporan_name', 'pelaporan.slack_id as slack_id', 'pelaporan.deskripsi as deskripsi', 'status.name as status_name', 'status.id as status_id')
                     ->where('pelaporan.kategory_id', $kategori)
-                    ->get();
+                    ->orderBy('pelaporan.created_at', 'DESC')
+                    ->simplePaginate(5);
         return $pelaporan;
     }
     /**
