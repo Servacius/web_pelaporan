@@ -69,5 +69,23 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Master data routes
     Route::resource('kategori', 'App\Http\Controllers\KategoriController');
+    Route::resource('divisi', 'App\Http\Controllers\DivisiController');
+    Route::resource('lokasi', 'App\Http\Controllers\LokasiController');
+
+    // Report routes
+    // Route::resource('report', 'App\Http\Controllers\ReportController');
+    Route::get('report-hilang', ['as' => 'report.report_hilang', 'uses' => 'App\Http\Controllers\ReportController@index_report_hilang']);
+    Route::get('report-rusak', ['as' => 'report.report_rusak', 'uses' => 'App\Http\Controllers\ReportController@index_report_rusak']);
+    Route::get('report-temuan', ['as' => 'report.report_temuan', 'uses' => 'App\Http\Controllers\ReportController@index_report_temuan']);
+    Route::get('report-export/{id}', ['as' => 'report.export', 'uses' => 'App\Http\Controllers\ReportController@export']);
+
+    // Histori routes
+    // Data pelaporan routes
+    Route::get('histori-pengajuan-hilang', ['as' => 'histori.pengajuan_hilang', 'uses' => 'App\Http\Controllers\PelaporanController@indexHistoriHilang']);
+    Route::get('edit-pengajuan-hilang/{id}', ['as' => 'histori.edit_pengajuan_hilang', 'uses' => 'App\Http\Controllers\PelaporanController@editPengajuanHilang']);
+    Route::get('histori-pengajuan-rusak', ['as' => 'histori.pengajuan_rusak', 'uses' => 'App\Http\Controllers\PelaporanController@indexHistoriRusak']);
+    Route::get('edit-pengajuan-rusak/{id}', ['as' => 'histori.edit_pengajuan_rusak', 'uses' => 'App\Http\Controllers\PelaporanController@editPengajuanRusak']);
+    Route::get('histori-pengajuan-temuan', ['as' => 'histori.pengajuan_temuan', 'uses' => 'App\Http\Controllers\PelaporanController@indexHistoriTemuan']);
+    Route::get('edit-pengajuan-temuan/{id}', ['as' => 'histori.edit_pengajuan_temuan', 'uses' => 'App\Http\Controllers\PelaporanController@editPengajuanTemuan']);
 });
 

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
+use App\Models\Divisi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class KategoriController extends Controller
+class DivisiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,15 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategoris = $this->getAllKategori();
-        return view('masterdata/kategori_list', compact('kategoris'));
+        $divisis = $this->getAllDivisi();
+        return view('masterdata/divisi_list', compact('divisis'));
+    }
+
+    public function getAllDivisi(){
+        $divisi = Divisi::orderBy('created_at', 'DESC')
+                    ->paginate(10);
+
+        return $divisi;
     }
 
     /**
@@ -26,7 +33,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view('masterdata.kategori_add');
+        return view('masterdata.divisi_add');
     }
 
     /**
@@ -37,12 +44,12 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        Kategori::create([
-            'nama_kategori' => $request->name,
+        Divisi::create([
+            'nama_divisi' => $request->name,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil di tambahkan.');
+        return redirect()->route('divisi.index')->with('success', 'Divisi berhasil di tambahkan.');
     }
 
     public function getAllKategori(){
@@ -55,10 +62,10 @@ class KategoriController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Kategori  $kategori
+     * @param  \App\Models\Divisi  $divisi
      * @return \Illuminate\Http\Response
      */
-    public function show(Kategori $kategori)
+    public function show(Divisi $divisi)
     {
         //
     }
@@ -66,39 +73,39 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Kategori  $kategori
+     * @param  \App\Models\Divisi  $divisi
      * @return \Illuminate\Http\Response
      */
     public function edit(int $id)
     {
-        $data = Kategori::find($id);
-        return view('masterdata.kategori_edit', compact('data'));
+        $data = Divisi::find($id);
+        return view('masterdata.divisi_edit', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kategori  $kategori
+     * @param  \App\Models\Divisi  $divisi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request  $request, Kategori $kategori)
+    public function update(Request $request, Divisi $divisi)
     {
         $request->validate([
             'name' => 'required',
         ]);
-        Kategori::find($kategori->id)->update(['nama_kategori' => $request->name, 'updated_at' => now()]);
+        Divisi::find($divisi->id)->update(['nama_divisi' => $request->name, 'updated_at' => now()]);
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil di update.');
+        return redirect()->route('divisi.index')->with('success', 'Divisi berhasil di update.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Kategori  $kategori
+     * @param  \App\Models\Divisi  $divisi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kategori $kategori)
+    public function destroy(Divisi $divisi)
     {
         //
     }

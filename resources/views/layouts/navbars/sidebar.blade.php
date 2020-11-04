@@ -132,19 +132,19 @@
         <div class="collapse" id="histori">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'h_baranghilang' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('histori.pengajuan_hilang') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'h_barangrusak' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('histori.pengajuan_rusak') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Barang Rusak') }} </span>
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'h_barangtemuan' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
+              <a class="nav-link" href="{{ route('histori.pengajuan_temuan') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal"> {{ __('Barang Temuan') }} </span>
               </a>
@@ -164,19 +164,19 @@
         <div class="collapse" id="report">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'r_baranghilang' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('report.report_hilang') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'r_barangrusak' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('report.report_rusak') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Barang Rusak') }} </span>
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'r_barangtemuan' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
+              <a class="nav-link" href="{{ route('report.report_temuan') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal"> {{ __('Barang Temuan') }} </span>
               </a>
@@ -200,13 +200,13 @@
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'divisi' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('divisi.index') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Divisi') }} </span>
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'lokasi' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
+              <a class="nav-link" href="{{ route('lokasi.index') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal"> {{ __('Lokasi') }} </span>
               </a>

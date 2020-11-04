@@ -1,27 +1,27 @@
-@extends('layouts.app', ['activePage' => 'kategoribarang', 'titlePage' => __('Kategori Barang')])
+@extends('layouts.app', ['activePage' => 'divisi', 'titlePage' => __('Divisi')])
 
 @section('content')
   <div class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('kategori.update', $data) }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ route('divisi.store') }}" autocomplete="off" class="form-horizontal">
             @csrf
-            @method('put')
+            @method('post')
 
             <div class="card ">
               <div class="card-header card-header-primary">
-                <h4 class="card-title">{{ __('Edit Kategori') }}</h4>
-                <p class="card-category">{{ __('Edit Kategori Barang') }}</p>
+                <h4 class="card-title">{{ __('Add Divisi') }}</h4>
+                <p class="card-category">{{ __('Tambah Divisi') }}</p>
               </div>
               <div class="card-body ">
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Nama Kategori') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Nama Divisi') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-kategori" type="text" value="{{ $data->nama_kategori }}" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-divisi" type="text" placeholder="{{ __('Nama Divisi') }}" required="true" aria-required="true"/>
                       @if ($errors->has('name'))
-                        <span id="name-error" class="error text-danger" for="input-kategori">{{ $errors->first('name') }}</span>
+                        <span id="name-error" class="error text-danger" for="input-divisi">{{ $errors->first('name') }}</span>
                       @endif
                     </div>
                   </div>
