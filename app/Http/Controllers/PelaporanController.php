@@ -403,7 +403,7 @@ class PelaporanController extends Controller
     public function detailBarangRusak(int $pelaporanId)
     {
         $username = Auth::user()->first_name;
-        $detailPelaporan = $this->getDetailData($pelaporanId, 1);
+        $detailPelaporan = $this->getDetailData($pelaporanId, 2);
         $comment = $this->getComment($pelaporanId);
 
         return view('pelaporan/detail_barang_rusak', compact('username', 'detailPelaporan', 'comment'));
@@ -411,8 +411,9 @@ class PelaporanController extends Controller
 
     public function detailBarangTemuan(int $pelaporanId)
     {
+
         $username = Auth::user()->first_name;
-        $detailPelaporan = $this->getDetailData($pelaporanId, 1);
+        $detailPelaporan = $this->getDetailData($pelaporanId, 3);
         $comment = $this->getComment($pelaporanId);
 
         return view('pelaporan/detail_barang_temuan', compact('username', 'detailPelaporan', 'comment'));

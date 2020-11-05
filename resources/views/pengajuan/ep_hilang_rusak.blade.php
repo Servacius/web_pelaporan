@@ -31,9 +31,12 @@
                   <label class="col-sm-1 col-form-label" style="font-weight:bold;">{{ __('Kategori Barang') }}</label>
                   <div class="form-group col-sm-4">
                     <select name="kategori" class="form-control" required="true" aria-required="true">
-                        <option value="{{ $data[0]->kategory_id }}">{{ $data[0]->nama_kategori }}</option>
                         @foreach ($kategori as $value)
-                            <option value="{{ $value->id }}">{{ $value->nama_kategori }}</option>
+                            @if($value->id == $data[0]->kategory_id)
+                                <option value="{{ $value->id }}" selected>{{ $value->nama_kategori }}</option>
+                            @else
+                                <option value="{{ $value->id }}">{{ $value->nama_kategori }}</option>
+                            @endif
                         @endforeach
                     </select>
                   </div>
@@ -50,9 +53,12 @@
                   <label class="col-sm-1 col-form-label" style="font-weight:bold;">{{ __('Lokasi') }}</label>
                   <div class="form-group col-sm-4">
                     <select name="lokasi" class="form-control" required="true" aria-required="true">
-                        <option value="{{ $data[0]->lokasi_id }}">{{ $data[0]->nama_lokasi }}</option>
                         @foreach ($lokasi as $value)
-                            <option value="{{ $value->id }}">{{ $value->nama_lokasi }}</option>
+                            @if($value->id == $data[0]->lokasi_id)
+                                <option value="{{ $value->id }}" selected>{{ $value->nama_lokasi }}</option>
+                            @else
+                                <option value="{{ $value->id }}">{{ $value->nama_lokasi }}</option>
+                            @endif
                         @endforeach
                     </select>
                   </div>
@@ -61,9 +67,12 @@
                   <label class="col-sm-1 col-form-label" style="font-weight:bold;">{{ __('Divisi') }}</label>
                   <div class="form-group col-sm-4">
                     <select name="divisi" class="form-control" required="true" aria-required="true">
-                        <option value="{{ $data[0]->divisi_id }}">{{ $data[0]->nama_divisi }}</option>
                         @foreach ($divisi as $value)
-                            <option value="{{ $value->id }}">{{ $value->nama_divisi }}</option>
+                            @if($value->id == $data[0]->divisi_id)
+                                <option value="{{ $value->id }}" selected>{{ $value->nama_divisi }}</option>
+                            @else
+                                <option value="{{ $value->id }}">{{ $value->nama_divisi }}</option>
+                            @endif
                         @endforeach
                     </select>
                   </div>

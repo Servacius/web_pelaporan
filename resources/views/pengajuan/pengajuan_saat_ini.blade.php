@@ -52,6 +52,16 @@
                         {{$pengajuan_saat_ini->deskripsi}}
                     </td>
                     <td class="td-actions text-right">
+                        @if($pengajuan_saat_ini->kategory_id == 1)
+                            <a rel="tooltip" class="btn btn-link" href="{{ route('data_barang.detail_barang_hilang', ['id' => $pengajuan_saat_ini->pelaporan_id]) }}" data-original-title="" title="">
+                        @elseif($pengajuan_saat_ini->kategory_id == 2)
+                            <a rel="tooltip" class="btn btn-link" href="{{ route('data_barang.detail_barang_rusak', ['id' => $pengajuan_saat_ini->pelaporan_id]) }}" data-original-title="" title="">
+                        @else
+                            <a rel="tooltip" class="btn btn-link" href="{{ route('data_barang.detail_barang_temuan', ['id' => $pengajuan_saat_ini->pelaporan_id]) }}" data-original-title="" title="">
+                        @endif
+                            <i class="material-icons">remove_red_eye</i>
+                            <div class="ripple-container"></div>
+                        </a>
                         <a rel="tooltip" class="btn btn-link" href="{{ route('pelaporan.edit_pengajuan_saat_ini', ['id' => $pengajuan_saat_ini->pelaporan_id]) }}" data-original-title="" title="">
                             <i class="material-icons">edit</i>
                             <div class="ripple-container"></div>

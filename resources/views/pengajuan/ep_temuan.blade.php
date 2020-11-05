@@ -31,9 +31,12 @@
                   <label class="col-sm-1 col-form-label" style="font-weight:bold;">{{ __('Kategori Barang') }}</label>
                   <div class="form-group col-sm-4">
                     <select name="kategori" class="form-control" required="true" aria-required="true">
-                        <option value="{{ $data[0]->kategory_id }}">{{ $data[0]->nama_kategori }}</option>
                         @foreach ($kategori as $value)
+                            @if($value->id == $data[0]->kategory_id)
+                                <option value="{{ $value->id }}" selected>{{ $value->nama_kategori }}</option>
+                            @else
                             <option value="{{ $value->id }}">{{ $value->nama_kategori }}</option>
+                            @endif
                         @endforeach
                     </select>
                   </div>
@@ -66,9 +69,12 @@
                   <label class="col-sm-1 col-form-label" style="font-weight:bold;">{{ __('Status') }}</label>
                   <div class="form-group col-sm-4">
                     <select name="status" class="form-control" required="true" aria-required="true">
-                        <option value="{{ $data[0]->status_id }}">{{ $data[0]->status_name }}</option>
                         @foreach ($status as $value)
-                            <option value="{{ $value->id }}">{{ $value->name }}</option>
+                            @if($value->id == $data[0]->status_id)
+                            <option value="{{ $value->id }}" selected>{{ $value->name }}</option>
+                            @else
+                                <option value="{{ $value->id }}">{{ $value->name }}</option>
+                            @endif
                         @endforeach
                     </select>
                   </div>
