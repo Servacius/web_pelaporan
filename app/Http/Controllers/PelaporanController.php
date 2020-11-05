@@ -59,14 +59,225 @@ class PelaporanController extends Controller
         return view('histori/histori_p_temuan', compact('h_barangTemuan'));
     }
 
+    public function indexPelaporanSaatIni(){
+        $userid = Auth::user()->id;
+        $p_saat_ini = $this->getPelaporanByUserId(4, $userid);
+
+        return view('pengajuan/pengajuan_saat_ini', compact('p_saat_ini'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function buatPengajuanBarangHilang()
     {
-        //
+        $activePage = "bp_baranghilang";
+        $type = "buat";
+        $kategori = DB::table('kategory_pelaporan')
+                    ->get();
+        $lokasi = DB::table('lokasi')
+                    ->get();
+        $divisi = DB::table('divisi')
+                    ->get();
+        return view('pengajuan/bp_hilang_rusak', compact('kategori', 'lokasi', 'divisi', 'activePage', 'type'));
+    }
+
+    public function buatPengajuanBarangRusak()
+    {
+        $activePage = "bp_barangrusak";
+        $type = "buat";
+        $kategori = DB::table('kategory_pelaporan')
+                    ->get();
+        $lokasi = DB::table('lokasi')
+                    ->get();
+        $divisi = DB::table('divisi')
+                    ->get();
+        return view('pengajuan/bp_hilang_rusak', compact('kategori', 'lokasi', 'divisi', 'activePage', 'type'));
+    }
+
+    public function buatPengajuanBarangTemuan()
+    {
+        $activePage = "bp_barangtemuan";
+        $type = "buat";
+        $kategori = DB::table('kategory_pelaporan')
+                    ->get();
+        $lokasi = DB::table('lokasi')
+                    ->get();
+        $divisi = DB::table('divisi')
+                    ->get();
+        return view('pengajuan/bp_temuan', compact('kategori', 'lokasi', 'divisi', 'activePage', 'type'));
+    }
+
+    public function buatPengajuan(Request $request)
+    {
+        $userid = Auth::user()->id;
+        $imageName = now().'.'.$request->gambar->extension();
+        $request->file('gambar')->move(public_path('images'), $imageName);
+        $path = public_path('images').'/'.$imageName;
+
+        if($request->kategori == 3){
+            $lokasi = null;
+            $divisi = null;
+        }else{
+            $lokasi = $request->lokasi;
+            $divisi = $request->divisi;
+        }
+        $id = DB::table('pelaporan')->insertGetId(
+            [
+                'user_id' => $userid,
+                'kategory_id' => $request->kategori,
+                'lokasi_id' => $lokasi,
+                'divisi_id' => $divisi,
+                'name' => $request->nama_pelaporan,
+                'slack_id' => $request->slack_id,
+                'deskripsi' => $request->deskripsi,
+                'image_path' => $path,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        );
+
+        DB::table('status_log')->insert(
+            [
+                'status_id' => 1,
+                'pelaporan_id' => $id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        );
+
+        return $this->indexPelaporanSaatIni();
+    }
+
+    public function updatePengajuan(Request $request)
+    {
+        $userid = Auth::user()->id;
+
+        if($request->kategori == 3){
+            $lokasi = null;
+            $divisi = null;
+        }else{
+            $lokasi = $request->lokasi;
+            $divisi = $request->divisi;
+        }
+// dd($request);
+        if ($request->hasFile('gambar')) {
+            // Do something with the file
+            $imageName = now().'.'.$request->gambar->extension();
+            $request->file('gambar')->move(public_path('images'), $imageName);
+            $path = public_path('images').'/'.$imageName;
+
+            $id = DB::table('pelaporan')
+            ->where('id', $request->id_pelaporan)
+            ->update(
+                [
+                    'user_id' => $userid,
+                    'kategory_id' => $request->kategori,
+                    'lokasi_id' => $lokasi,
+                    'divisi_id' => $divisi,
+                    'name' => $request->nama_pelaporan,
+                    'slack_id' => $request->slack_id,
+                    'deskripsi' => $request->deskripsi,
+                    'image_path' => $path,
+                    'updated_at' => now()
+                ]
+            );
+        }else {
+            $id = DB::table('pelaporan')
+            ->where('id', $request->id_pelaporan)
+            ->update([
+                    'user_id' => $userid,
+                    'kategory_id' => $request->kategori,
+                    'lokasi_id' => $lokasi,
+                    'divisi_id' => $divisi,
+                    'name' => $request->nama_pelaporan,
+                    'slack_id' => $request->slack_id,
+                    'deskripsi' => $request->deskripsi,
+                    'updated_at' => now()
+                ]
+            );
+        }
+        // dd($id);
+        DB::table('status_log')->insert(
+            [
+                'status_id' => $request->status,
+                'pelaporan_id' => $request->id_pelaporan,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        );
+
+        return $this->indexPelaporanSaatIni();
+    }
+
+    public function editPengajuanSaatIni (int $pelaporanId){
+
+        $kategori = DB::table('kategory_pelaporan')->get();
+        $lokasi = DB::table('lokasi')->get();
+        $divisi = DB::table('divisi')->get();
+        $type = "edit";
+        $activePage = "p_saatini";
+        $kategori_id = DB::table('pelaporan')->select('kategory_id')->where('pelaporan.id', $pelaporanId)->first();
+
+        if($kategori_id->kategory_id == 3){
+            $data = DB::table('pelaporan')
+                ->join(DB::raw('(select status_log.pelaporan_id, max(status_log.status_id) as status_id from status_log group by status_log.pelaporan_id) as status_log'), 'pelaporan.id', '=', 'status_log.pelaporan_id')
+                ->join('status', 'status_log.status_id', '=', 'status.id')
+                ->join('users', 'pelaporan.user_id', '=', 'users.id')
+                ->join('kategory_pelaporan', 'pelaporan.kategory_id', '=', 'kategory_pelaporan.id')
+                ->select(
+                    'pelaporan.id as pelaporan_id',
+                    'pelaporan.name as pelaporan_name',
+                    'pelaporan.slack_id as slack_id',
+                    'pelaporan.deskripsi as deskripsi',
+                    'pelaporan.image_path as image_path',
+                    'status.name as status_name',
+                    'status.id as status_id',
+                    'users.first_name as first_name',
+                    'users.email as email',
+                    'pelaporan.kategory_id as kategory_id',
+                    'kategory_pelaporan.nama_kategori as nama_kategori')
+                ->where('pelaporan.id', $pelaporanId)
+                ->get();
+        }else {
+            $data = DB::table('pelaporan')
+                ->join(DB::raw('(select status_log.pelaporan_id, max(status_log.status_id) as status_id from status_log group by status_log.pelaporan_id) as status_log'), 'pelaporan.id', '=', 'status_log.pelaporan_id')
+                ->join('status', 'status_log.status_id', '=', 'status.id')
+                ->join('users', 'pelaporan.user_id', '=', 'users.id')
+                ->join('kategory_pelaporan', 'pelaporan.kategory_id', '=', 'kategory_pelaporan.id')
+                ->join('lokasi', 'pelaporan.lokasi_id', '=', 'lokasi.id')
+                ->join('divisi', 'pelaporan.divisi_id', '=', 'divisi.id')
+                ->select(
+                    'pelaporan.id as pelaporan_id',
+                    'pelaporan.name as pelaporan_name',
+                    'pelaporan.slack_id as slack_id',
+                    'pelaporan.deskripsi as deskripsi',
+                    'pelaporan.image_path as image_path',
+                    'status.name as status_name',
+                    'status.id as status_id',
+                    'users.first_name as first_name',
+                    'users.email as email',
+                    'pelaporan.kategory_id as kategory_id',
+                    'kategory_pelaporan.nama_kategori as nama_kategori',
+                    'pelaporan.lokasi_id as lokasi_id',
+                    'pelaporan.lokasi_id as lokasi_id',
+                    'lokasi.nama_lokasi as nama_lokasi',
+                    'pelaporan.divisi_id as divisi_id',
+                    'divisi.nama_divisi as nama_divisi')
+                ->where('pelaporan.id', $pelaporanId)
+                ->get();
+        }
+
+        $status = DB::table('status')->where('kategory_id', $kategori_id->kategory_id)->get();
+        $filename = basename($data[0]->image_path);
+        // dd($filename);
+        if($kategori_id->kategory_id == 3){
+            return view('pengajuan/ep_temuan', compact('kategori', 'lokasi', 'divisi', 'activePage', 'status', 'data', 'type', 'filename'));
+        }else {
+            return view('pengajuan/ep_hilang_rusak', compact('kategori', 'lokasi', 'divisi', 'activePage', 'status', 'data', 'type', 'filename'));
+        }
     }
 
     /**
@@ -120,7 +331,8 @@ class PelaporanController extends Controller
 
     public function getPelaporanByUserId(int $kategoryid, int $userid)
     {
-        $pelaporan = DB::table('pelaporan')
+        if($kategoryid == 4){
+            $pelaporan = DB::table('pelaporan')
                     ->join(DB::raw('(select status_log.pelaporan_id, max(status_log.status_id) as status_id from status_log group by status_log.pelaporan_id) as status_log'), 'pelaporan.id', '=', 'status_log.pelaporan_id')
                     ->join('status', 'status_log.status_id', '=', 'status.id')
                     ->select('pelaporan.id as pelaporan_id',
@@ -128,11 +340,28 @@ class PelaporanController extends Controller
                             'pelaporan.slack_id as slack_id',
                             'pelaporan.deskripsi as deskripsi',
                             'status.name as status_name',
-                            'status.id as status_id')
+                            'status.id as status_id',
+                            'pelaporan.kategory_id as kategory_id')
+                    ->where('pelaporan.user_id', $userid)
+                    ->where('status_log.status_id', '!=', 4)
+                    ->orderBy('pelaporan.created_at', 'DESC')
+                    ->simplePaginate(15);
+        }else {
+            $pelaporan = DB::table('pelaporan')
+                    ->join(DB::raw('(select status_log.pelaporan_id, max(status_log.status_id) as status_id from status_log group by status_log.pelaporan_id) as status_log'), 'pelaporan.id', '=', 'status_log.pelaporan_id')
+                    ->join('status', 'status_log.status_id', '=', 'status.id')
+                    ->select('pelaporan.id as pelaporan_id',
+                            'pelaporan.name as pelaporan_name',
+                            'pelaporan.slack_id as slack_id',
+                            'pelaporan.deskripsi as deskripsi',
+                            'status.name as status_name',
+                            'status.id as status_id',
+                            'pelaporan.kategory_id as kategory_id')
                     ->where('pelaporan.kategory_id', $kategoryid)
                     ->where('pelaporan.user_id', $userid)
                     ->orderBy('pelaporan.created_at', 'DESC')
                     ->simplePaginate(15);
+        }
 
         return $pelaporan;
     }

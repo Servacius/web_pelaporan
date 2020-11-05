@@ -80,12 +80,23 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('report-export/{id}', ['as' => 'report.export', 'uses' => 'App\Http\Controllers\ReportController@export']);
 
     // Histori routes
-    // Data pelaporan routes
     Route::get('histori-pengajuan-hilang', ['as' => 'histori.pengajuan_hilang', 'uses' => 'App\Http\Controllers\PelaporanController@indexHistoriHilang']);
     Route::get('edit-pengajuan-hilang/{id}', ['as' => 'histori.edit_pengajuan_hilang', 'uses' => 'App\Http\Controllers\PelaporanController@editPengajuanHilang']);
     Route::get('histori-pengajuan-rusak', ['as' => 'histori.pengajuan_rusak', 'uses' => 'App\Http\Controllers\PelaporanController@indexHistoriRusak']);
     Route::get('edit-pengajuan-rusak/{id}', ['as' => 'histori.edit_pengajuan_rusak', 'uses' => 'App\Http\Controllers\PelaporanController@editPengajuanRusak']);
     Route::get('histori-pengajuan-temuan', ['as' => 'histori.pengajuan_temuan', 'uses' => 'App\Http\Controllers\PelaporanController@indexHistoriTemuan']);
     Route::get('edit-pengajuan-temuan/{id}', ['as' => 'histori.edit_pengajuan_temuan', 'uses' => 'App\Http\Controllers\PelaporanController@editPengajuanTemuan']);
+
+    // Pengajuan saat ini routes
+    Route::get('pengajuan-saat-ini', ['as' => 'pelaporan.pengajuan-saat-ini', 'uses' => 'App\Http\Controllers\PelaporanController@indexPelaporanSaatIni']);
+    Route::get('edit-pengajuan-saat-ini/{id}', ['as' => 'pelaporan.edit_pengajuan_saat_ini', 'uses' => 'App\Http\Controllers\PelaporanController@editPengajuanSaatIni']);
+
+    // Buat Pengajuan routes
+    Route::get('buat_pengajuan_hilang', ['as' => 'pengajuan.bp_hilang', 'uses' => 'App\Http\Controllers\PelaporanController@buatPengajuanBarangHilang']);
+    Route::get('buat_pengajuan_rusak', ['as' => 'pengajuan.bp_rusak', 'uses' => 'App\Http\Controllers\PelaporanController@buatPengajuanBarangRusak']);
+    Route::get('buat_pengajuan_temuan', ['as' => 'pengajuan.bp_temuan', 'uses' => 'App\Http\Controllers\PelaporanController@buatPengajuanBarangTemuan']);
+    Route::post('buat_pengajuan_add', ['as' => 'pengajuan.buat_pengajuan', 'uses' => 'App\Http\Controllers\PelaporanController@buatPengajuan']);
+    Route::post('edit_pengajuan_add', ['as' => 'pengajuan.edit_pengajuan', 'uses' => 'App\Http\Controllers\PelaporanController@updatePengajuan']);
+
 });
 

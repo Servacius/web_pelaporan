@@ -31,7 +31,7 @@
         <div class="collapse" id="databarang">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'baranghilang' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('data-barang-hilang') }}">
+              <a class="nav-link" href="{{ route('data-barang-hilang', 1) }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
               </a>
@@ -96,19 +96,19 @@
         <div class="collapse" id="buatpengajuan">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'bp_baranghilang' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('pengajuan.bp_hilang') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'bp_barangrusak' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('pengajuan.bp_rusak') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal">{{ __('Barang Rusak') }} </span>
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'bp_barangtemuan' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
+              <a class="nav-link" href="{{ route('pengajuan.bp_temuan') }}">
                 <span class="sidebar-mini col-sm-1"></span>
                 <span class="sidebar-normal"> {{ __('Barang Temuan') }} </span>
               </a>
@@ -117,7 +117,7 @@
         </div>
       </li>
       <li class="nav-item{{ $activePage == 'p_saatini' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('home') }}">
+        <a class="nav-link" href="{{ route('pelaporan.pengajuan-saat-ini') }}">
           <i class="material-icons">fact_check</i>
             <p>{{ __('Pengajuan saat ini') }}</p>
         </a>
