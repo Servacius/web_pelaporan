@@ -110,6 +110,19 @@ class PelaporanController extends Controller
         return view('pengajuan/bp_temuan', compact('kategori', 'lokasi', 'divisi', 'activePage', 'type'));
     }
 
+    public function addKomentar(Request $request)
+    {
+        $userid = Auth::user()->id;
+
+        $id = DB::table('comment')->insert([
+                'pelaporan_id' => $request->id_pelaporan,
+                'user_id' => $userid,
+                'comment' => $request->comment,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        return $this->detailBarangHilang($request->id_pelaporan);
+    }
     public function buatPengajuan(Request $request)
     {
         $userid = Auth::user()->id;
@@ -162,7 +175,7 @@ class PelaporanController extends Controller
             $lokasi = $request->lokasi;
             $divisi = $request->divisi;
         }
-// dd($request);
+
         if ($request->hasFile('gambar')) {
             // Do something with the file
             $imageName = now().'.'.$request->gambar->extension();
@@ -313,6 +326,18 @@ class PelaporanController extends Controller
         return $pelaporan;
     }
 
+    public function getTotalPelaporanByKategoryId(int $kategoryid)
+    {
+        $pelaporan = DB::table('pelaporan')
+                    ->join(DB::raw('(select status_log.pelaporan_id, max(status_log.status_id) as status_id from status_log group by status_log.pelaporan_id) as status_log'), 'pelaporan.id', '=', 'status_log.pelaporan_id')
+                    ->join('status', 'status_log.status_id', '=', 'status.id')
+                    ->where('pelaporan.kategory_id', $kategoryid)
+                    ->where('status_log.status_id', '!=', 4)
+                    ->count();
+
+        return $pelaporan;
+    }
+
     public function getPelaporanByKategory(int $kategori){
         $pelaporan = DB::table('pelaporan')
                     ->join(DB::raw('(select status_log.pelaporan_id, max(status_log.status_id) as status_id from status_log group by status_log.pelaporan_id) as status_log'), 'pelaporan.id', '=', 'status_log.pelaporan_id')
@@ -325,7 +350,7 @@ class PelaporanController extends Controller
                             'status.id as status_id')
                     ->where('pelaporan.kategory_id', $kategori)
                     ->orderBy('pelaporan.created_at', 'DESC')
-                    ->simplePaginate(5);
+                    ->simplePaginate(15);
         return $pelaporan;
     }
 
@@ -364,6 +389,33 @@ class PelaporanController extends Controller
         }
 
         return $pelaporan;
+    }
+
+    public function detailBarangHilang(int $pelaporanId)
+    {
+        $username = Auth::user()->first_name;
+        $detailPelaporan = $this->getDetailData($pelaporanId, 1);
+        $comment = $this->getComment($pelaporanId);
+
+        return view('pelaporan/detail_barang_hilang', compact('username', 'detailPelaporan', 'comment'));
+    }
+
+    public function detailBarangRusak(int $pelaporanId)
+    {
+        $username = Auth::user()->first_name;
+        $detailPelaporan = $this->getDetailData($pelaporanId, 1);
+        $comment = $this->getComment($pelaporanId);
+
+        return view('pelaporan/detail_barang_rusak', compact('username', 'detailPelaporan', 'comment'));
+    }
+
+    public function detailBarangTemuan(int $pelaporanId)
+    {
+        $username = Auth::user()->first_name;
+        $detailPelaporan = $this->getDetailData($pelaporanId, 1);
+        $comment = $this->getComment($pelaporanId);
+
+        return view('pelaporan/detail_barang_temuan', compact('username', 'detailPelaporan', 'comment'));
     }
 
     public function editPengajuanHilang(int $pelaporanId)
@@ -459,6 +511,24 @@ class PelaporanController extends Controller
 
         return $data;
     }
+
+    public function getComment(int $pelaporanId){
+        $data = DB::table('comment')
+            ->join('users', 'users.id', '=', 'comment.user_id')
+            ->select(
+                'comment.id as comment_id',
+                'comment.pelaporan_id as pelaporan_id',
+                'comment.user_id as user_id',
+                'users.first_name as user_name',
+                'comment.created_at as tanggal',
+                'comment.comment as comment')
+            ->where('comment.pelaporan_id', $pelaporanId)
+            ->orderBy('comment.created_at', 'DESC')
+            ->get();
+
+        return $data;
+    }
+
     /**
      * Update the specified resource in storage.
      *

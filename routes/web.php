@@ -64,8 +64,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Data pelaporan routes
     Route::get('/data-barang-hilang', [App\Http\Controllers\PelaporanController::class, 'indexBarangHilang'])->name('data-barang-hilang');
+    Route::get('detail-barang-hilang/{id}', ['as' => 'data_barang.detail_barang_hilang', 'uses' => 'App\Http\Controllers\PelaporanController@detailBarangHilang']);
     Route::get('/data-barang-rusak', [App\Http\Controllers\PelaporanController::class, 'indexBarangRusak'])->name('data-barang-rusak');
+    Route::get('detail-barang-rusak/{id}', ['as' => 'data_barang.detail_barang_rusak', 'uses' => 'App\Http\Controllers\PelaporanController@detailBarangRusak']);
     Route::get('/data-barang-temuan', [App\Http\Controllers\PelaporanController::class, 'indexBarangTemuan'])->name('data-barang-temuan');
+    Route::get('detail-barang-temuan/{id}', ['as' => 'data_barang.detail_barang_temuan', 'uses' => 'App\Http\Controllers\PelaporanController@detailBarangTemuan']);
+    Route::post('add_komentar', ['as' => 'pelaporan.add_komentar', 'uses' => 'App\Http\Controllers\PelaporanController@addKomentar']);
 
     // Master data routes
     Route::resource('kategori', 'App\Http\Controllers\KategoriController');

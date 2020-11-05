@@ -29,6 +29,9 @@
                   <th>
                     Deskripsi
                   </th>
+                  <th class="text-right">
+                    Action
+                  </th>
                 </thead>
                 <tbody>
                 @foreach($p_barangHilang as $baranghilang)
@@ -47,6 +50,18 @@
                     </td>
                     <td>
                         {{$baranghilang->deskripsi}}
+                    </td>
+                    <td class="td-actions text-right">
+                        <a rel="tooltip" class="btn btn-link" href="{{ route('data_barang.detail_barang_hilang', ['id' => $baranghilang->pelaporan_id]) }}" data-original-title="" title="">
+                            <i class="material-icons">remove_red_eye</i>
+                            <div class="ripple-container"></div>
+                        </a>
+                        @if(Auth::user()->account_type_id == 1)
+                            <a rel="tooltip" class="btn btn-link" href="{{ route('pelaporan.edit_pengajuan_saat_ini', ['id' => $baranghilang->pelaporan_id]) }}" data-original-title="" title="">
+                                <i class="material-icons">edit</i>
+                                <div class="ripple-container"></div>
+                            </a>
+                        @endif
                     </td>
                   </tr>
                 @endforeach

@@ -11,7 +11,7 @@
                 <i class="material-icons">error_outline</i>
               </div>
               <h3 class="card-title">Hilang</h3>
-              <h3 class="card-title">49</h3>
+              <h3 class="card-title">{{ $countBarangHilang }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -26,7 +26,7 @@
                 <i class="material-icons">warning</i>
               </div>
               <h3 class="card-title">Rusak</h3>
-              <h3 class="card-title">75</h3>
+              <h3 class="card-title">{{ $countBarangRusak }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -41,7 +41,7 @@
                 <i class="material-icons">check_circle_outline</i>
               </div>
               <h3 class="card-title">Temuan</h3>
-              <h3 class="card-title">20</h3>
+              <h3 class="card-title">{{ $countBarangTemuan }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">

@@ -11,7 +11,7 @@
                 <i class="material-icons">error_outline</i>
               </div>
               <h3 class="card-title">Hilang</h3>
-              <h3 class="card-title">49</h3>
+              <h3 class="card-title">{{ $countBarangHilang }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -26,7 +26,7 @@
                 <i class="material-icons">check_circle_outline</i>
               </div>
               <h3 class="card-title">Temuan</h3>
-              <h3 class="card-title">20</h3>
+              <h3 class="card-title">{{ $countBarangTemuan }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -64,7 +64,7 @@
                 </tbody>
               </table>
                 <div>
-                    <a href="#" style="float: right;" class="text-warning font-weight-bold">Read more ....</a>
+                    <a href="{{ route('data-barang-hilang') }}" style="float: right;" class="text-warning font-weight-bold">Read more ....</a>
                 </div>
             </div>
           </div>
@@ -95,7 +95,7 @@
                 </tbody>
               </table>
                 <div>
-                    <a href="#" style="float: right;" class="text-success font-weight-bold">Read more ....</a>
+                    <a href="{{ route('data-barang-temuan') }}" style="float: right;" class="text-success font-weight-bold">Read more ....</a>
                 </div>
             </div>
           </div>
