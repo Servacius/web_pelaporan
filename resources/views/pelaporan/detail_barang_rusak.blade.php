@@ -19,7 +19,7 @@
                     <div class="col-md-2">
                         <div class="card-body">
                             <p class="card-text">Nama Barang</p>
-                            <p class="card-text">Nama pelaporan</p>
+                            <p class="card-text">Nama Pelapor</p>
                             <p class="card-text">Slack ID</p>
                             <p class="card-text">Lokasi</p>
                             <p class="card-text">Divisi</p>

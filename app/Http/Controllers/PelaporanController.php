@@ -113,7 +113,6 @@ class PelaporanController extends Controller
     public function addKomentar(Request $request)
     {
         $userid = Auth::user()->id;
-
         $id = DB::table('comment')->insert([
                 'pelaporan_id' => $request->id_pelaporan,
                 'user_id' => $userid,
@@ -121,7 +120,15 @@ class PelaporanController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
-        return $this->detailBarangHilang($request->id_pelaporan);
+        $type = DB::table('pelaporan')->select('kategory_id')->where('pelaporan.id', '=', $request->id_pelaporan)->get();
+
+        if($type[0]->kategory_id==1){
+            return $this->detailBarangHilang($request->id_pelaporan);
+        }else if($type[0]->kategory_id==2){
+            return $this->detailBarangRusak($request->id_pelaporan);
+        }else{
+            return $this->detailBarangTemuan($request->id_pelaporan);
+        }
     }
     public function buatPengajuan(Request $request)
     {

@@ -27,6 +27,9 @@
                     Status
                   </th>
                   <th>
+                    Kategori Barang
+                  </th>
+                  <th>
                     Deskripsi
                   </th>
                   <th class="text-right">
@@ -47,6 +50,15 @@
                     </td>
                     <td>
                         {{$pengajuan_saat_ini->status_name}}
+                    </td>
+                    <td>
+                        @if($pengajuan_saat_ini->kategory_id == 1)
+                            Hilang
+                        @elseif($pengajuan_saat_ini->kategory_id == 2)
+                            Rusak
+                        @else
+                            Temuan
+                        @endif
                     </td>
                     <td>
                         {{$pengajuan_saat_ini->deskripsi}}
