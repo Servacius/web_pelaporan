@@ -174,7 +174,6 @@ class PelaporanController extends Controller
     public function updatePengajuan(Request $request)
     {
         $userid = Auth::user()->id;
-
         if($request->kategori == 3){
             $lokasi = null;
             $divisi = null;
@@ -193,7 +192,6 @@ class PelaporanController extends Controller
             ->where('id', $request->id_pelaporan)
             ->update(
                 [
-                    'user_id' => $userid,
                     'kategory_id' => $request->kategori,
                     'lokasi_id' => $lokasi,
                     'divisi_id' => $divisi,
@@ -208,7 +206,6 @@ class PelaporanController extends Controller
             $id = DB::table('pelaporan')
             ->where('id', $request->id_pelaporan)
             ->update([
-                    'user_id' => $userid,
                     'kategory_id' => $request->kategori,
                     'lokasi_id' => $lokasi,
                     'divisi_id' => $divisi,
@@ -219,7 +216,7 @@ class PelaporanController extends Controller
                 ]
             );
         }
-        // dd($id);
+
         DB::table('status_log')->insert(
             [
                 'status_id' => $request->status,
@@ -229,7 +226,23 @@ class PelaporanController extends Controller
             ]
         );
 
-        return $this->indexPelaporanSaatIni();
+        if(Auth::user()->account_type_id == 1){
+            if($request->kategori == 1){
+                $p_barangHilang = $this->getPelaporanByKategory(1);
+
+                return view('pelaporan/barang_hilang', compact('p_barangHilang'));
+            }else if($request->kategori == 2){
+                $p_barangRusak = $this->getPelaporanByKategory(2);
+
+                return view('pelaporan/barang_rusak', compact('p_barangRusak'));
+            }else {
+                $p_barangTemuan = $this->getPelaporanByKategory(3);
+
+                return view('pelaporan/barang_temuan', compact('p_barangTemuan'));
+            }
+        }else{
+            return $this->indexPelaporanSaatIni();
+        }
     }
 
     public function editPengajuanSaatIni (int $pelaporanId){

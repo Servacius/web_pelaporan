@@ -61,7 +61,9 @@
                   <label class="col-sm-1 col-form-label" style="font-weight:bold;">{{ __('Gambar') }}</label>
                   <div class="col-sm-4">
                     <div class="form-group custom-file">
-                      <input class="custom-file-input" style="z-index:0; opacity:1;" type="file" name="gambar" ></input>
+                        <input value="Choose file"type="button" href="#" onclick="document.getElementById('fileID').click(); " >
+                        <input class="col-md-8" style="border:0;" value="{{ basename($filename) }}" name="filename" id="filename" type="text" />
+                        <input class="custom-file-input" onChange="document.getElementById('filename').value = document.getElementById('fileID').value;" id="fileID" hidden style="z-index:0; opacity:1; " type="file" name="gambar" />
                     </div>
                   </div>
                 </div>
@@ -70,8 +72,14 @@
                   <div class="form-group col-sm-4">
                     <select name="status" class="form-control" required="true" aria-required="true">
                         @foreach ($status as $value)
-                            @if($value->id == $data[0]->status_id)
-                            <option value="{{ $value->id }}" selected>{{ $value->name }}</option>
+                            @if($value->id == $data[0]->status_id && $value->name != 'Baru')
+                                <option value="{{ $value->id }}" selected>{{ $value->name }}</option>
+                            @elseif($value->name == 'Baru')
+                                <option value="" selected>Pilih Status</option>
+                            @elseif($value->name == 'Sudah Dikembalikan' && Auth::user()->account_type_id  != 1)
+                                continue;
+                            @elseif($value->name == 'Sudah Dikembalikan' && Auth::user()->account_type_id  == 1)
+                                <option value="{{ $value->id }}">{{ $value->name }}</option>
                             @else
                                 <option value="{{ $value->id }}">{{ $value->name }}</option>
                             @endif
