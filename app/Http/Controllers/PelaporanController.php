@@ -272,7 +272,7 @@ class PelaporanController extends Controller
 
         $status = DB::table('status')->where('kategory_id', $kategori_id->kategory_id)->get();
         $filename = basename($data[0]->image_path);
-        // dd($filename);
+
         if($kategori_id->kategory_id == 3){
             return view('pengajuan/ep_temuan', compact('kategori', 'lokasi', 'divisi', 'activePage', 'status', 'data', 'type', 'filename'));
         }else {
