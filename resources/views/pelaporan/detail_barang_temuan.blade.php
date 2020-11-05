@@ -13,8 +13,8 @@
           <div class="card-body">
             <div class="card mb-12" style="max-width: 1800px;">
                 <div class="row no-gutters">
-                    <div class="col-md-4">
-                    <img src="{{asset('/images/dummy_pic.png') }}" class="card-img rounded img-thumbnail" alt="...">
+                    <div class="col-md-3">
+                    <img src="{{asset('/images/'.basename($detailPelaporan[0]->image_path)) }}" width="340" class="rounded img-thumbnail" alt="...">
                     </div>
                     <div class="col-md-2">
                         <div class="card-body">
