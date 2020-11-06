@@ -20,6 +20,7 @@
                         <div class="card-body">
                             <p class="card-text">Nama Barang</p>
                             <p class="card-text">Nama Pelapor</p>
+                            <p class="card-text">Status Barang</p>
                             <p class="card-text">Slack ID</p>
                             <p class="card-text">Tanggal</p>
                             <p class="card-text">Deskripsi</p>
@@ -29,6 +30,7 @@
                         <div class="card-body">
                             <p class="card-text">: {{$detailPelaporan[0]->pelaporan_name}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->first_name}}</p>
+                            <p class="card-text">: {{$detailPelaporan[0]->status_name}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->slack_id}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->date}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->deskripsi}}</p>

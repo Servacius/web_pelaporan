@@ -13,13 +13,14 @@
           <div class="card-body">
             <div class="card mb-12" style="max-width: 1800px;">
                 <div class="row no-gutters">
-                    <div class="col-md-4">
-                    <img src="{{asset('/images/dummy_pic.png') }}" class="card-img rounded img-thumbnail" alt="...">
+                    <div class="col-md-3">
+                        <img src="{{asset('/images/'.basename($detailPelaporan[0]->image_path)) }}" width="340"  class="rounded img-thumbnail" alt="...">
                     </div>
                     <div class="col-md-2">
                         <div class="card-body">
                             <p class="card-text">Nama Barang</p>
-                            <p class="card-text">Nama pelaporan</p>
+                            <p class="card-text">Nama Pelapor</p>
+                            <p class="card-text">Status Barang</p>
                             <p class="card-text">Slack ID</p>
                             <p class="card-text">Lokasi</p>
                             <p class="card-text">Divisi</p>
@@ -31,6 +32,7 @@
                         <div class="card-body">
                             <p class="card-text">: {{$detailPelaporan[0]->pelaporan_name}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->first_name}}</p>
+                            <p class="card-text">: {{$detailPelaporan[0]->status_name}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->slack_id}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->nama_lokasi}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->nama_divisi}}</p>

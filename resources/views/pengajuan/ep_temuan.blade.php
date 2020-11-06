@@ -76,9 +76,9 @@
                                 <option value="{{ $value->id }}" selected>{{ $value->name }}</option>
                             @elseif($value->name == 'Baru')
                                 <option value="" selected>Pilih Status</option>
-                            @elseif($value->name == 'Sudah Dikembalikan' && Auth::user()->account_type_id  != 1)
+                            @elseif($value->name == 'Selesai' && Auth::user()->account_type_id  != 1)
                                 continue;
-                            @elseif($value->name == 'Sudah Dikembalikan' && Auth::user()->account_type_id  == 1)
+                            @elseif($value->name == 'Selesai' && Auth::user()->account_type_id  == 1)
                                 <option value="{{ $value->id }}">{{ $value->name }}</option>
                             @else
                                 <option value="{{ $value->id }}">{{ $value->name }}</option>

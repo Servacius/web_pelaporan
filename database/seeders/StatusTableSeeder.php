@@ -99,6 +99,13 @@ class StatusTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ]
+            [
+                'id' => 13,
+                'kategory_id' => 3,
+                'name' => 'Selesai',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ]);
     }
 }

@@ -20,6 +20,7 @@
                         <div class="card-body">
                             <p class="card-text">Nama Barang</p>
                             <p class="card-text">Nama Pelapor</p>
+                            <p class="card-text">Status Barang</p>
                             <p class="card-text">Slack ID</p>
                             <p class="card-text">Lokasi</p>
                             <p class="card-text">Divisi</p>
@@ -31,6 +32,7 @@
                         <div class="card-body">
                             <p class="card-text">: {{$detailPelaporan[0]->pelaporan_name}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->first_name}}</p>
+                            <p class="card-text">: {{$detailPelaporan[0]->status_name}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->slack_id}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->nama_lokasi}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->nama_divisi}}</p>
@@ -44,20 +46,20 @@
             <div class="mb-12" style="max-width: 1800px;">
                 <h3 class="card-title font-weight-bold">Komentar</h3>
                 <br/>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4"> -->
                     @foreach($comment as $comments)
                         <div class="row no-gutters">
-                            <div class="col-xs-2 col-md-2">
-                                <img src="{{asset('/images/dummy_prof.jpeg') }}" class="rounded-circle img-responsive" width="70" height="70" />
+                            <div class="col-md-1">
+                                <img src="{{asset('/images/dummy_prof.jpeg') }}" class="rounded-circle img-thumbnail img-responsive" width="70" />
                             </div>
-                            <div class="row col-md-8">
-                                <div class="col-md-4">
+                            <div class="row col-md-10">
+                                <div class="col-md-6">
                                     <p class="card-text" style="font-weight:bold;">{{ $comments->user_name }}</p>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-4">
                                     <span>{{ \Carbon\Carbon::parse($comments->tanggal)->diffForHumans() }}</span>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-4">
                                     <p class="card-text">{{ $comments->comment }}</p>
                                 </div>
                             </div>
@@ -81,7 +83,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                <!-- </div> -->
             </div>
           </div>
         </div>

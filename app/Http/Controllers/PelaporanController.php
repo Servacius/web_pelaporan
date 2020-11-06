@@ -352,7 +352,7 @@ class PelaporanController extends Controller
                     ->join(DB::raw('(select status_log.pelaporan_id, max(status_log.status_id) as status_id from status_log group by status_log.pelaporan_id) as status_log'), 'pelaporan.id', '=', 'status_log.pelaporan_id')
                     ->join('status', 'status_log.status_id', '=', 'status.id')
                     ->where('pelaporan.kategory_id', $kategoryid)
-                    ->where('status_log.status_id', '!=', 4)
+                    ->whereNotIn('status.name', ["Selesai"])
                     ->count();
 
         return $pelaporan;
@@ -388,7 +388,7 @@ class PelaporanController extends Controller
                             'status.id as status_id',
                             'pelaporan.kategory_id as kategory_id')
                     ->where('pelaporan.user_id', $userid)
-                    ->whereNotIn('status.name', ["Selesai","Sudah Dikembalikan"])
+                    ->whereNotIn('status.name', ["Selesai"])
                     ->orderBy('pelaporan.created_at', 'DESC')
                     ->simplePaginate(15);
         }else {
@@ -404,7 +404,7 @@ class PelaporanController extends Controller
                             'pelaporan.kategory_id as kategory_id')
                     ->where('pelaporan.kategory_id', $kategoryid)
                     ->where('pelaporan.user_id', $userid)
-                    ->whereIn('status.name', ["Selesai","Sudah Dikembalikan"])
+                    ->whereIn('status.name', ["Selesai"])
                     ->orderBy('pelaporan.created_at', 'DESC')
                     ->simplePaginate(15);
         }
