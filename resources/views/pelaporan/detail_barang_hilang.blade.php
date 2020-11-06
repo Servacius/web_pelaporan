@@ -50,23 +50,30 @@
                             <div class="col-xs-2 col-md-2">
                                 <img src="{{asset('/images/dummy_prof.jpeg') }}" class="rounded-circle img-responsive" width="70" height="70" />
                             </div>
-                            <div class="col-xs-2 col-md-4">
-                                <p class="card-text" style="font-weight:bold;">{{ $comments->user_name }}</p>
-                                <p class="card-text">{{ $comments->comment }}</p>
+                            <div class="row col-md-8">
+                                <div class="col-md-4">
+                                    <p class="card-text" style="font-weight:bold;">{{ $comments->user_name }}</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <span>{{ \Carbon\Carbon::parse($comments->tanggal)->diffForHumans() }}</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <p class="card-text">{{ $comments->comment }}</p>
+                                </div>
                             </div>
                         </div>
+                        <br/>
                         <br/>
                     @endforeach
                     <form method="post" action="{{ route('pelaporan.add_komentar') }}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
-                    <br/><br/><br/>
+                    <br/><br/>
                     <div class="row no-gutters">
-                        <!-- <label class="col-md-2 col-form-label" style="font-weight:bold; font-color:black;">{{ __('Komentar') }}</label> -->
-                            <div class="col-xs-2 col-md-4">
+                            <div class="col-xs-2 col-md-12">
                                 <div class="form-group">
                                 <input hidden value="{{ $detailPelaporan[0]->pelaporan_id }}" name="id_pelaporan"/>
-                                <textarea cols="50" rows="5" class="form-control rounded-0" name="comment" id="comment" type="text" required="true" placeholder="Ketik Komentar......"></textarea>
+                                <textarea cols="100" rows="6" class="form-control rounded-0" name="comment" id="comment" type="text" required="true" placeholder="Ketik Komentar......"></textarea>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-12">

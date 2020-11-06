@@ -53,38 +53,6 @@
           </ul>
         </div>
       </li>
-      <!-- @if(Auth::user()->account_type_id == 1)
-      <li class="nav-item {{ ($activePage == 'p_baranghilang' || $activePage == 'p_barangrusak' || $activePage == 'p_barangtemuan') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#pengajuan" aria-expanded="false">
-        <i class="material-icons">content_paste</i>
-          <p>{{ __('Pengajuan') }}
-            <b class="caret"></b>
-          </p>
-        </a>
-        <div class="collapse" id="pengajuan">
-          <ul class="nav">
-            <li class="nav-item{{ $activePage == 'p_baranghilang' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
-                <span class="sidebar-mini col-sm-1"></span>
-                <span class="sidebar-normal">{{ __('Barang Hilang') }} </span>
-              </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'p_barangrusak' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
-                <span class="sidebar-mini col-sm-1"></span>
-                <span class="sidebar-normal">{{ __('Barang Rusak') }} </span>
-              </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'p_barangtemuan' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
-                <span class="sidebar-mini col-sm-1"></span>
-                <span class="sidebar-normal"> {{ __('Barang Temuan') }} </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      @endif -->
       @if(Auth::user()->account_type_id == 2)
       <li class="nav-item {{ ($activePage == 'bp_baranghilang' || $activePage == 'bp_barangrusak' || $activePage == 'bp_barangtemuan') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#buatpengajuan" aria-expanded="false">

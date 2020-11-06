@@ -388,7 +388,7 @@ class PelaporanController extends Controller
                             'status.id as status_id',
                             'pelaporan.kategory_id as kategory_id')
                     ->where('pelaporan.user_id', $userid)
-                    ->where('status_log.status_id', '!=', 4)
+                    ->whereNotIn('status.name', ["Selesai","Sudah Dikembalikan"])
                     ->orderBy('pelaporan.created_at', 'DESC')
                     ->simplePaginate(15);
         }else {
@@ -404,6 +404,7 @@ class PelaporanController extends Controller
                             'pelaporan.kategory_id as kategory_id')
                     ->where('pelaporan.kategory_id', $kategoryid)
                     ->where('pelaporan.user_id', $userid)
+                    ->whereIn('status.name', ["Selesai","Sudah Dikembalikan"])
                     ->orderBy('pelaporan.created_at', 'DESC')
                     ->simplePaginate(15);
         }
@@ -544,7 +545,7 @@ class PelaporanController extends Controller
                 'comment.created_at as tanggal',
                 'comment.comment as comment')
             ->where('comment.pelaporan_id', $pelaporanId)
-            ->orderBy('comment.created_at', 'DESC')
+            ->orderBy('comment.created_at', 'ASC')
             ->get();
 
         return $data;

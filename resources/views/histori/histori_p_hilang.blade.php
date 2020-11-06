@@ -53,7 +53,7 @@
                     </td>
                     <td class="td-actions text-right">
                         <a rel="tooltip" class="btn btn-link" href="{{ route('histori.edit_pengajuan_hilang', ['id' => $baranghilang->pelaporan_id]) }}" data-original-title="" title="">
-                            <i class="material-icons">edit</i>
+                            <i class="material-icons">remove_red_eye</i>
                             <div class="ripple-container"></div>
                         </a>
                     </td>

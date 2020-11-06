@@ -62,10 +62,10 @@
                     @method('post')
                     <br/><br/><br/>
                     <div class="row no-gutters">
-                            <div class="col-xs-2 col-md-4">
+                            <div class="col-xs-2 col-md-12">
                                 <div class="form-group">
                                 <input hidden value="{{ $detailPelaporan[0]->pelaporan_id }}" name="id_pelaporan"/>
-                                <textarea cols="50" rows="5" class="form-control rounded-0" name="comment" id="comment" type="text" required="true" placeholder="Ketik Komentar......"></textarea>
+                                <textarea cols="100" rows="5" class="form-control rounded-0" name="comment" id="comment" type="text" required="true" placeholder="Ketik Komentar......"></textarea>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-12">
