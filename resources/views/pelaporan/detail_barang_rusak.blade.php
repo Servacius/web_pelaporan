@@ -46,15 +46,21 @@
             <div class="mb-12" style="max-width: 1800px;">
                 <h3 class="card-title font-weight-bold">Komentar</h3>
                 <br/>
-                <div class="col-md-4">
                     @foreach($comment as $comments)
                         <div class="row no-gutters">
-                            <div class="col-xs-2 col-md-2">
-                                <img src="{{asset('/images/dummy_prof.jpeg') }}" class="rounded-circle img-responsive" width="70" height="70" />
+                            <div class="col-md-1">
+                                <img src="{{asset('/images/dummy_prof.jpeg') }}" class="rounded-circle img-thumbnail img-responsive" width="70" />
                             </div>
-                            <div class="col-xs-2 col-md-4">
-                                <p class="card-text" style="font-weight:bold;">{{ $comments->user_name }}</p>
-                                <p class="card-text">{{ $comments->comment }}</p>
+                            <div class="row col-md-10">
+                                <div class="col-md-6">
+                                    <p class="card-text" style="font-weight:bold;">{{ $comments->user_name }}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <span>{{ \Carbon\Carbon::parse($comments->tanggal)->diffForHumans() }}</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="card-text">{{ $comments->comment }}</p>
+                                </div>
                             </div>
                         </div>
                         <br/>
