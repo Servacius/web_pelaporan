@@ -122,12 +122,18 @@ class PelaporanController extends Controller
             ]);
         $type = DB::table('pelaporan')->select('kategory_id')->where('pelaporan.id', '=', $request->id_pelaporan)->get();
 
+        $username = Auth::user()->first_name;
+        $comment = $this->getComment($request->id_pelaporan);
+
         if($type[0]->kategory_id==1){
-            return $this->detailBarangHilang($request->id_pelaporan);
+            $detailPelaporan = $this->getDetailData($request->id_pelaporan, 1);
+            return redirect()->route('data_barang.detail_barang_hilang', ['id' => $request->id_pelaporan])->withInput();
         }else if($type[0]->kategory_id==2){
-            return $this->detailBarangRusak($request->id_pelaporan);
+            $detailPelaporan = $this->getDetailData($request->id_pelaporan, 2);
+            return redirect()->route('data_barang.detail_barang_rusak', ['id' => $request->id_pelaporan])->withInput();
         }else{
-            return $this->detailBarangTemuan($request->id_pelaporan);
+            $detailPelaporan = $this->getDetailData($request->id_pelaporan, 3);
+            return redirect()->route('data_barang.detail_barang_temuan', ['id' => $request->id_pelaporan])->withInput();
         }
     }
     public function buatPengajuan(Request $request)
