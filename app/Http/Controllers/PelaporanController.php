@@ -487,6 +487,36 @@ class PelaporanController extends Controller
         return view('histori/detail_histori_p_temuan', compact('username', 'detailPelaporan', 'statusLog', 'comments'));
     }
 
+    public function detailReportBarangHilang(int $pelaporanId)
+    {
+        $username = Auth::user()->first_name;
+        $detailPelaporan = $this->getDetailData($pelaporanId, 1);
+        $statusLog = $this->getStatusLog($pelaporanId);
+        $comments = $this->getComment($pelaporanId);
+
+        return view('report/detail_report_p_hilang', compact('username', 'detailPelaporan', 'statusLog', 'comments'));
+    }
+
+    public function detailReportBarangRusak(int $pelaporanId)
+    {
+        $username = Auth::user()->first_name;
+        $detailPelaporan = $this->getDetailData($pelaporanId, 2);
+        $statusLog = $this->getStatusLog($pelaporanId);
+        $comments = $this->getComment($pelaporanId);
+
+        return view('report/detail_report_p_rusak', compact('username', 'detailPelaporan', 'statusLog', 'comments'));
+    }
+
+    public function detailReportBarangTemuan(int $pelaporanId)
+    {
+        $username = Auth::user()->first_name;
+        $detailPelaporan = $this->getDetailData($pelaporanId, 3);
+        $statusLog = $this->getStatusLog($pelaporanId);
+        $comments = $this->getComment($pelaporanId);
+
+        return view('report/detail_report_p_temuan', compact('username', 'detailPelaporan', 'statusLog', 'comments'));
+    }
+
     public function getDetailData(int $pelaporanId, int $type){
         if($type == 1 || $type == 2){
             $data = DB::table('pelaporan')

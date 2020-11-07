@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'h_baranghilang', 'titlePage' => __('Histori Barang Hilang')])
+@extends('layouts.app', ['activePage' => 'r_barangrusak', 'titlePage' => __('Detail Report Barang Rusak')])
 
 @section('content')
 <div class="content">
@@ -6,9 +6,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-warning">
-            <h4 class="card-title font-weight-bold">Histori Barang Hilang</h4>
-            <p class="card-category"> Detail histori pelaporan yang hilang</p>
+          <div class="card-header card-header-danger">
+            <h4 class="card-title font-weight-bold">Detail Barang Rusak</h4>
+            <p class="card-category">Detail report pelaporan yang hilang</p>
           </div>
           <div class="card-body">
             <div class="card mb-12" style="max-width: 1800px;">
@@ -49,14 +49,14 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-warning">
+          <div class="card-header card-header-danger">
             <h4 class="card-title font-weight-bold">Status Log</h4>
             <p class="card-category">Detail log Status</p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table">
-                <thead class=" text-warning">
+                <thead class=" text-danger">
                   <th>
                     ID
                   </th>
@@ -92,14 +92,14 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-warning">
+          <div class="card-header card-header-danger">
             <h4 class="card-title font-weight-bold">Komentar</h4>
             <p class="card-category">Daftar Komentar</p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table">
-                <thead class=" text-warning">
+                <thead class=" text-danger">
                   <th>
                     ID
                   </th>

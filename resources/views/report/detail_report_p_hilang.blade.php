@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'h_baranghilang', 'titlePage' => __('Histori Barang Hilang')])
+@extends('layouts.app', ['activePage' => 'r_baranghilang', 'titlePage' => __('Detail Report Barang Hilang')])
 
 @section('content')
 <div class="content">
@@ -7,8 +7,8 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-warning">
-            <h4 class="card-title font-weight-bold">Histori Barang Hilang</h4>
-            <p class="card-category"> Detail histori pelaporan yang hilang</p>
+            <h4 class="card-title font-weight-bold">Detail Barang Hilang</h4>
+            <p class="card-category"> Detail report pelaporan yang hilang</p>
           </div>
           <div class="card-body">
             <div class="card mb-12" style="max-width: 1800px;">

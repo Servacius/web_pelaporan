@@ -77,11 +77,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('lokasi', 'App\Http\Controllers\LokasiController');
 
     // Report routes
-    // Route::resource('report', 'App\Http\Controllers\ReportController');
     Route::get('report-hilang', ['as' => 'report.report_hilang', 'uses' => 'App\Http\Controllers\ReportController@index_report_hilang']);
     Route::get('report-rusak', ['as' => 'report.report_rusak', 'uses' => 'App\Http\Controllers\ReportController@index_report_rusak']);
     Route::get('report-temuan', ['as' => 'report.report_temuan', 'uses' => 'App\Http\Controllers\ReportController@index_report_temuan']);
     Route::get('report-export/{id}', ['as' => 'report.export', 'uses' => 'App\Http\Controllers\ReportController@export']);
+    Route::get('r-detail-barang-hilang/{id}', ['as' => 'report.detail_barang_hilang', 'uses' => 'App\Http\Controllers\PelaporanController@detailReportBarangHilang']);
+    Route::get('r-detail-barang-rusak/{id}', ['as' => 'report.detail_barang_rusak', 'uses' => 'App\Http\Controllers\PelaporanController@detailReportBarangRusak']);
+    Route::get('r-detail-barang-temuan/{id}', ['as' => 'report.detail_barang_temuan', 'uses' => 'App\Http\Controllers\PelaporanController@detailReportBarangTemuan']);
 
     // Histori routes
     Route::get('histori-pengajuan-hilang', ['as' => 'histori.pengajuan_hilang', 'uses' => 'App\Http\Controllers\PelaporanController@indexHistoriHilang']);

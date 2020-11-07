@@ -8,7 +8,7 @@
         <div class="card">
           <div class="card-header card-header-danger">
             <h4 class="card-title font-weight-bold">Histori Barang Rusak</h4>
-            <p class="card-category"> Daftar histori pelaporan yang hilang</p>
+            <p class="card-category"> Detail histori pelaporan yang hilang</p>
           </div>
           <div class="card-body">
             <div class="card mb-12" style="max-width: 1800px;">

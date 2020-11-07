@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'h_baranghilang', 'titlePage' => __('Histori Barang Hilang')])
+@extends('layouts.app', ['activePage' => 'r_barangtemuan', 'titlePage' => __('Detail Report Barang Temuan')])
 
 @section('content')
 <div class="content">
@@ -6,9 +6,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-warning">
-            <h4 class="card-title font-weight-bold">Histori Barang Hilang</h4>
-            <p class="card-category"> Detail histori pelaporan yang hilang</p>
+          <div class="card-header card-header-success">
+            <h4 class="card-title font-weight-bold">Detail Barang Temuan</h4>
+            <p class="card-category">Detail report pelaporan yang ditemukan</p>
           </div>
           <div class="card-body">
             <div class="card mb-12" style="max-width: 1800px;">
@@ -22,8 +22,6 @@
                             <p class="card-text">Nama Pelapor</p>
                             <p class="card-text">Status Barang</p>
                             <p class="card-text">Slack ID</p>
-                            <p class="card-text">Lokasi</p>
-                            <p class="card-text">Divisi</p>
                             <p class="card-text">Tanggal</p>
                             <p class="card-text">Deskripsi</p>
                         </div>
@@ -34,8 +32,6 @@
                             <p class="card-text">: {{$detailPelaporan[0]->first_name}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->status_name}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->slack_id}}</p>
-                            <p class="card-text">: {{$detailPelaporan[0]->nama_lokasi}}</p>
-                            <p class="card-text">: {{$detailPelaporan[0]->nama_divisi}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->date}}</p>
                             <p class="card-text">: {{$detailPelaporan[0]->deskripsi}}</p>
                         </div>
@@ -49,14 +45,14 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-warning">
+          <div class="card-header card-header-success">
             <h4 class="card-title font-weight-bold">Status Log</h4>
             <p class="card-category">Detail log Status</p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table">
-                <thead class=" text-warning">
+                <thead class=" text-success">
                   <th>
                     ID
                   </th>
@@ -92,14 +88,14 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-warning">
+          <div class="card-header card-header-success">
             <h4 class="card-title font-weight-bold">Komentar</h4>
             <p class="card-category">Daftar Komentar</p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table">
-                <thead class=" text-warning">
+                <thead class=" text-success">
                   <th>
                     ID
                   </th>

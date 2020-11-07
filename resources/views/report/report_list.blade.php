@@ -56,11 +56,11 @@
                     </td>
                     <td class="td-actions text-right">
                         @if($report->kategory_id == 3)
-                            <a rel="tooltip" class="btn btn-link" href="{{ route('data_barang.detail_barang_temuan', ['id' => $report->pelaporan_id]) }}" data-original-title="" title="">
+                            <a rel="tooltip" class="btn btn-link" href="{{ route('report.detail_barang_temuan', ['id' => $report->pelaporan_id]) }}" data-original-title="" title="">
                         @elseif($report->kategory_id == 2)
-                            <a rel="tooltip" class="btn btn-link" href="{{ route('data_barang.detail_barang_rusak', ['id' => $report->pelaporan_id]) }}" data-original-title="" title="">
+                            <a rel="tooltip" class="btn btn-link" href="{{ route('report.detail_barang_rusak', ['id' => $report->pelaporan_id]) }}" data-original-title="" title="">
                         @else
-                            <a rel="tooltip" class="btn btn-link" href="{{ route('data_barang.detail_barang_hilang', ['id' => $report->pelaporan_id]) }}" data-original-title="" title="">
+                            <a rel="tooltip" class="btn btn-link" href="{{ route('report.detail_barang_hilang', ['id' => $report->pelaporan_id]) }}" data-original-title="" title="">
                         @endif
                             <i class="material-icons">remove_red_eye</i>
                             <div class="ripple-container"></div>
