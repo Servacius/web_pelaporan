@@ -462,8 +462,9 @@ class PelaporanController extends Controller
         $username = Auth::user()->first_name;
         $detailPelaporan = $this->getDetailData($pelaporanId, 1);
         $statusLog = $this->getStatusLog($pelaporanId);
+        $comments = $this->getComment($pelaporanId);
 
-        return view('histori/detail_histori_p_hilang', compact('username', 'detailPelaporan', 'statusLog'));
+        return view('histori/detail_histori_p_hilang', compact('username', 'detailPelaporan', 'statusLog', 'comments'));
     }
 
     public function editPengajuanRusak(int $pelaporanId)
@@ -471,8 +472,9 @@ class PelaporanController extends Controller
         $username = Auth::user()->first_name;
         $detailPelaporan = $this->getDetailData($pelaporanId, 2);
         $statusLog = $this->getStatusLog($pelaporanId);
+        $comments = $this->getComment($pelaporanId);
 
-        return view('histori/detail_histori_p_rusak', compact('username', 'detailPelaporan', 'statusLog'));
+        return view('histori/detail_histori_p_rusak', compact('username', 'detailPelaporan', 'statusLog', 'comments'));
     }
 
     public function editPengajuanTemuan(int $pelaporanId)
@@ -480,8 +482,9 @@ class PelaporanController extends Controller
         $username = Auth::user()->first_name;
         $detailPelaporan = $this->getDetailData($pelaporanId, 3);
         $statusLog = $this->getStatusLog($pelaporanId);
+        $comments = $this->getComment($pelaporanId);
 
-        return view('histori/detail_histori_p_temuan', compact('username', 'detailPelaporan', 'statusLog'));
+        return view('histori/detail_histori_p_temuan', compact('username', 'detailPelaporan', 'statusLog', 'comments'));
     }
 
     public function getDetailData(int $pelaporanId, int $type){

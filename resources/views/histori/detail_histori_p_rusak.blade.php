@@ -88,5 +88,54 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title font-weight-bold">Komentar</h4>
+            <p class="card-category">Daftar Komentar</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-danger">
+                  <th>
+                    ID
+                  </th>
+                  <th>
+                    Nama
+                  </th>
+                  <th>
+                    Komentar
+                  </th>
+                  <th>
+                    Tanggal
+                  </th>
+                </thead>
+                <tbody>
+                @foreach($comments as $comment)
+                  <tr>
+                    <td>
+                        {{$loop->iteration}}
+                    </td>
+                    <td>
+                        {{$comment->user_name}}
+                    </td>
+                    <td>
+                        {{$comment->comment}}
+                    </td>
+                    <td>
+                        {{$comment->tanggal}}
+                    </td>
+                  </tr>
+                @endforeach
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 @endsection
